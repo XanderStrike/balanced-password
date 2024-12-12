@@ -6,7 +6,6 @@ right_special = '^&*()_+-=[]{}|;:,.<>?';
 
 function sample(str, useCaps) {
   var char = str.charAt(Math.floor(Math.random() * str.length));
-  // 50% chance to capitalize if caps are enabled and it's a letter
   if (useCaps && Math.random() < 0.25 && char.match(/[a-z]/i)) {
     return char.toUpperCase();
   }
@@ -51,9 +50,16 @@ function generate(len, includeSpecial, useCaps) {
 document.addEventListener('DOMContentLoaded', function() {
   const generateBtn = document.getElementById('generate');
   const lengthInput = document.getElementById('length');
+  const lengthDisplay = document.getElementById('length-display');
   const specialInput = document.getElementById('special');
   const capsInput = document.getElementById('caps');
   const resultDiv = document.getElementById('result');
+  const copyBtn = document.getElementById('copy');
+
+  // Update the display when slider moves
+  lengthInput.addEventListener('input', function() {
+    lengthDisplay.textContent = this.value;
+  });
 
   generateBtn.addEventListener('click', function(e) {
     const length = parseInt(lengthInput.value);
@@ -62,5 +68,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const pass = generate(length, includeSpecial, useCaps);
 
     resultDiv.textContent = pass;
+    // Show copy button when we have a password
+    copyBtn.style.display = pass ? 'block' : 'none';
   });
+
+  copyBtn.addEventListener('click', async function() {
+    const text = resultDiv.textContent;
+    try {
+      await navigator.clipboard.writeText(text);
+      
+      // Visual feedback
+      const originalText = this.textContent;
+      this.textContent = 'Copied!';
+      setTimeout(() => {
+        this.textContent = originalText;
+      }, 1000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  });
+
+  // Initially hide copy button
+  copyBtn.style.display = 'none';
 });
