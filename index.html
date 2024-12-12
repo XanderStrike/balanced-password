@@ -55,15 +55,13 @@ input {
 
   <p>These passwords are guaranteed to be right-left balanced on QWERTY keyboards for quick typing.</p>
 
-  <label>Length<input class="js-length" type="number" value='10' /></label><br>
+  <label>Length<input id="length" type="number" value='10' /></label><br>
+  <label>Include special characters<input id="special" type="checkbox" /></label><br>
+  <label>Include capital letters<input id="caps" type="checkbox" /></label><br>
 
-  <a class="js-generate button" href="#">Generate</a>
+  <button id="generate" class="button">Generate</button>
 
-  <div class="js-result result"><br></div>
-  <script
-    src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
+  <div id="result" class="result"><br></div>
   <script src="script.js"></script>
 </div>
 </body>

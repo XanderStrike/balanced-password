@@ -1,3 +1,12 @@
 # Simple balanced password generator
 
-Check it out [here](http://password.xanderstrike.com)
+Balanced passwords are passwords that switch between left and right hand
+characters, allowing for maximum typing speed.
+
+This tool generates balanced passwords for you based on criteria you provide.
+
+Features:
+- Alternates between left and right hand characters
+- Optional special characters that maintain left-right hand balance
+- Optional capital letters
+- Customizable password length
