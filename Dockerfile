@@ -1,5 +1,5 @@
-# Use the official nginx image as base
-FROM nginx:alpine
+# Use multi-arch nginx image as base
+FROM --platform=$TARGETPLATFORM nginx:alpine
 
 # Copy the application files to nginx's default serving directory
 COPY index.html /usr/share/nginx/html/
